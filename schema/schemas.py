@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+
+from database.models import Role
 
 
 class UploadVideoResponse(BaseModel):
@@ -21,3 +23,18 @@ class VideoResponse(BaseModel):
     file_size: int
     upload_date: Optional[datetime] = None
     upload_path: Optional[str] = None
+
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str
+    role: Role
+
+
+class ShowUser(BaseModel):
+    email: EmailStr
+    is_active: bool
+    role: Role
+
+    class Config:
+        orm_mode = True
