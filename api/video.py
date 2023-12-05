@@ -1,4 +1,3 @@
-# api/routers/video.py
 from typing import List
 from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks, Depends, Query, status
 from datetime import datetime

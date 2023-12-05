@@ -14,4 +14,4 @@ app.include_router(auth.router)
 
 @app.get("/")
 async def home():
-    return "Hello Admin"
+    return "Hello, welcome to the homepage"
