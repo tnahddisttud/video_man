@@ -20,7 +20,10 @@ env_bak/
 .env
 
 # Database files
-db.sqlite
+videoman.sqlite
+
+# Uploaded Folders
+files/
 
 # Compiled Python files
 *.pyc
