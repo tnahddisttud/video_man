@@ -13,6 +13,7 @@ class Video(Base):
     file_size = Column(Integer)
     upload_date = Column(DateTime, default=datetime.now(timezone.utc))
     upload_job = relationship("UploadJob", backref="video", uselist=False)
+    upload_path = Column(String, nullable=True)
 
 
 class JobStatus(enum.Enum):

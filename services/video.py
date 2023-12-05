@@ -2,7 +2,7 @@ import asyncio
 import os
 from fastapi import UploadFile, HTTPException
 from database.models import JobStatus
-from database.crud import update_upload_job
+from database.crud import update_upload_job, update_video
 import moviepy.editor as moviepy
 
 
@@ -26,10 +26,12 @@ class VideoConverter:
 
 class VideoProcessor:
     @staticmethod
-    async def process_upload(db, job_id: str, video_file: UploadFile):
+    async def process_upload(db, job_id: str, video_id: int, video_file: UploadFile):
         try:
             video_path = await asyncio.to_thread(VideoConverter.convert_video, video_file)
             update_upload_job(db=db, job_id=job_id, status=JobStatus.completed)
+            update_video(db=db, video_id=video_id, filename=video_file.filename, file_size=video_file.size,
+                         upload_path=video_path)
             db.commit()
         except HTTPException as e:
             print(e)
