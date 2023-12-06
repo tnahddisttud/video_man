@@ -36,7 +36,7 @@ client = TestClient(app)
 def test_upload_video_valid():
     with client as c:
         response = c.post("/upload-video/",
-                          files={"video_file": ("test_video.mp4", open("resource/test_video.mkv", "rb"))},
+                          files={"video_file": ("test_video.mp4", open("resource/test_video.avi", "rb"))},
                           headers={"Authorization": f"Bearer {admin_user}"})
         assert response.status_code == 200
         assert "job_id" in response.json()

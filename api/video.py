@@ -36,7 +36,8 @@ def get_user_from_token(db, token):
     return user
 
 
-@router.post("/upload-video/", tags=["Video"], response_model=UploadVideoResponse)
+@router.post("/upload-video/", tags=["Video"], response_model=UploadVideoResponse,
+             description="Supported formats: mp4, avi, webm, gif")
 async def upload_video(
         background_tasks: BackgroundTasks,
         video_file: UploadFile = File(...),
