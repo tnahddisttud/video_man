@@ -36,7 +36,7 @@ def retrieve_token_for_authenticated_user(
 
 @router.post("/user", tags=["User"], response_model=ShowUser)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    user = User(email=user.email, password=Hasher.get_hash_password(user.password))
+    user = User(email=user.email, password=Hasher.get_hash_password(user.password), role=user.role)
     db.add(user)
     db.commit()
     db.refresh(user)
